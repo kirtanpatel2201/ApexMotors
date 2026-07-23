@@ -152,4 +152,3 @@ vehiclesRouter.get('/history/purchases', requireAdmin, async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch history' });
   }
 });
-
