@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  body {
+    @apply transition-colors duration-700 ease-in-out antialiased bg-[#FAFAFA] dark:bg-[#080808] text-gray-900 dark:text-zinc-50;
+  }
+}
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-secondary: #10b981;
+}
+
+/* Linear/Vercel Inspired Design Tokens */
+
+/* Panel */
+.linear-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark .linear-panel {
+  background: #111111;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 24px 38px 3px rgba(0, 0, 0, 0.6);
+}
+.linear-panel:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transform: translateY(-2px);
+}
+.dark .linear-panel:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 12px -1px rgba(0, 0, 0, 0.5), 0 24px 38px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Button */
+.linear-button {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #111;
+  font-weight: 600;
+}
+.dark .linear-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.linear-button:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.dark .linear-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Input */
+.linear-input {
+  background: #FAFAFA;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #111;
+}
+.dark .linear-input {
+  background: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff; /* Fixed text visibility */
+}
+.linear-input:focus {
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+.dark .linear-input:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+}
+
+/* Fix Autofill Background & Text Color overriding Dark Mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+  -webkit-transition-delay: 9999s;
+}
+
+/* Custom Minimal Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Ambient Grid & Glow */
+.linear-grid {
+  position: absolute;
+  inset: 0;
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+.dark .linear-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.linear-glow {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 60%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.dark .linear-glow {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+}
